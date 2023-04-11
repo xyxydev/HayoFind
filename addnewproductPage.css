@@ -5,6 +5,11 @@ body {
     margin: 0;
 	padding: 0;
 }
+/*not applied iconTab*/
+.iconTab { 
+    width: 10px;
+    height: 25px;
+}
 .navbarBox{
 	width: 100%;
 	height: 80px;

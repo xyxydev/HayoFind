@@ -49,10 +49,11 @@ body {
     border-right: none;
 }
 .pNumber-input{
-    width: 417px;
+    width: 416px;
     height: 25px;
     margin-top: 23px;
     margin-left: 40px;
+    margin-bottom: 5px;
     padding: 5px;
     font-size: 16px;
     font-family: 'Quicksand';
@@ -68,6 +69,37 @@ body {
     margin-top: 23px;
     margin-left: 40px;
     padding: 5px;
+    font-size: 16px;
+    font-family: 'Quicksand';
+    border-bottom: 1px solid #91C788;
+    outline: none;
+    border-top: none;
+    border-left: none;
+    border-right: none;
+}
+.mercType-select{
+    width: 205px;
+    height: 32px;
+    margin-top: 25px;
+    margin-left: 10px;
+    padding: 5px;
+    font-size: 16px;
+    font-family: 'Quicksand';
+    border-bottom: 1px solid #91C788;
+    outline: none;
+    border-top: none;
+    border-left: none;
+    border-right: none;
+}
+.mercType-label{
+    width: 417px;
+    height: 25px;
+    margin-top: 150px;
+    margin-left: 40px;
+    padding: 5px;
+    padding-right: 90px;
+    color: gray;
+    background-color: white;
     font-size: 16px;
     font-family: 'Quicksand';
     border-bottom: 1px solid #91C788;
