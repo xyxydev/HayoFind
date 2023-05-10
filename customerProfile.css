@@ -78,3 +78,91 @@ span.uf{
     font-size: 13px !important;
     margin-bottom: 10px !important;
 }
+h6.user-email{
+    margin-bottom: 10px !important;
+}
+#profile-h5{
+    color: green !important;
+}
+#valid-h5{
+    color: green !important;
+}
+#personal-h6{
+    color: green !important;
+}
+#account-h6{
+    color: green !important;
+}
+#submit-img{
+    margin-top: 23px !important;
+    margin-left: 70px !important;
+    font-size: 13px !important;
+    margin-bottom: 10px !important;
+
+
+
+    /* Styles for button */
+    display: inline-block;
+    font-weight: 400;
+    text-align: center;
+    white-space: nowrap;
+    vertical-align: middle;
+    user-select: none;
+    
+    padding: 0.5rem 1rem;
+    font-size: 1.25rem;
+    line-height: 1.5;
+    border-radius: 0.3rem;
+
+    /* Background and text color */
+    color: #fff;
+    background-color: #91C788;
+    border: none;
+    outline: none;
+    margin-bottom: 20px !important;
+
+
+}
+#saveButton{
+    display: inline-block;
+    font-weight: 400;
+    text-align: center;
+    white-space: nowrap;
+    vertical-align: middle;
+    user-select: none;
+    
+    padding: 0.5rem 1rem;
+    font-size: 1.25rem;
+    line-height: 1.5;
+    border-radius: 0.3rem;
+
+    /* Background and text color */
+    color: #fff;
+    background-color: #91C788;
+    border: none;
+    outline: none;
+    margin-bottom: 20px !important;
+}
+#editButton{
+    display: inline-block;
+    font-weight: 400;
+    text-align: center;
+    white-space: nowrap;
+    vertical-align: middle;
+    user-select: none;
+    
+    padding: 0.5rem 1rem;
+    font-size: 1.25rem;
+    line-height: 1.5;
+    border-radius: 0.3rem;
+
+    /* Background and text color */
+    color: #fff;
+    background-color: #6c757d;
+    border: none;
+    outline: none;
+    margin-bottom: 20px !important;
+}
+h6.user-email{
+    margin-bottom: 10px !important;
+}

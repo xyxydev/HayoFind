@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <link rel="stylesheet" type="text/css" href="css/loginForm.css">
+    <link rel="stylesheet" type="text/css" href="css/buyerloginForm.css">
     <link rel="shortcut icon" class="iconTab" href="images/cow.ico">
     <!----FONTS -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -68,14 +68,14 @@
     <?php if (isset($error)): ?>
         <p><?php echo $error; ?></p>
     <?php endif; ?>
-
+    
     <div class="col-md-6">
 
         <form class="p-4 p-md-5 rounded-3" id="cont-card" action="buyerLoginForm.php" method="POST">
             <h2 class="text-center mb-4">Login</h2>
 
             <div class="mb-3">
-            <label for="username" class="form-label visually-hidden">Username/Email</label>
+            <label for="username" class="form-label">Username/Email</label>
             <input type="text" class="form-control" id="username" name="username" required>
             </div>
 
@@ -87,7 +87,7 @@
             <button class="login-BTN" type="submit" name="submit">LOGIN</button>
 
             <div class="text-center mt-3">
-            No account? <a href="registerOption.html" class="signup-Anc">Register</a>
+            No account? <a href="buyerRegisterForm.php" class="signup-Anc">Register</a>
             </div>
         </form>
 

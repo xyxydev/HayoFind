@@ -10,22 +10,12 @@ body {
 .w-100 btn btn-lg btn-primary{
     background-color: #91C788 !important;
 }
-.login-Anc{
+.signup-Anc{
     color: #91C788;
     text-decoration: none !important;
     outline: none;
 }
-a.term-a{
-    color: #91C788;
-    text-decoration: none !important;
-    outline: none;
-}
-a.priv-a{
-    color: #91C788;
-    text-decoration: none !important;
-    outline: none;
-}
-.register-BTN{
+.login-BTN{
     /* Sets width to 100% */
     width: 100%;
 
@@ -50,10 +40,11 @@ a.priv-a{
     margin-bottom: 50px !important;
     
 }
-button.register-BTN:focus {                /** Para change color ig click **/
+button.login-BTN:focus {                /** Para change color ig click **/
     border: 2px solid #9acd32; 
     outline: none;
 }
+
 input.form-control:focus {
     outline: none !important;
     box-shadow: none;
@@ -63,6 +54,7 @@ h2.text-center mb-4{
     font-family: 'Quicksand' !important;
     font-weight: 100 !important;
 }
+
 h2{
     font-weight:400 !important;
     padding-bottom: 10px !important;
@@ -70,21 +62,7 @@ h2{
 }
 .col-md-6{
     box-shadow: 0px 1px 16px rgba(0, 0, 0, 0.08) !important;
+    padding: 40px !important;
     margin-left: 800px !important;
-    margin-top: -87px !important;
-   
-    
-}
-select.form-control:focus{
-    outline: none !important;
-    box-shadow: none;
-    border-color: #9acd32;
-}
-option.form-control{
-    outline: none !important;
-    box-shadow: none;
-    border-color: #9acd32;
-}
-p.p-term{
-    margin-top: -50px !important;
+    margin-top: 20px;
 }

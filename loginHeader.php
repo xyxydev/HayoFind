@@ -1,5 +1,6 @@
 <head>
     <link rel="stylesheet" type="text/css" href="css/loginForm.css">
+    <link rel="stylesheet" type="text/css" href="loginHeader.css">
     <link rel="shortcut icon" class="iconTab" href="images/cow.ico">
     <!----FONTS -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -29,13 +30,24 @@
             <span class="hayofind">HayoFind</span>
         </div>
         <div class="login-title">
-            <span class="login">Login</span>
+            <?php if(isset($register) && $register == true): ?>
+                <span class="login" style="margin-left: -30px;">Register</span>
+            <?php else: ?>
+                <span class="login">Login</span>
+            <?php endif; ?>
         </div>
     </div>
     <div class="home-content">
         <span class="welcome">Welcome to HayoFind</span><br>
         <span class="platform">E-Commerce Website</span><br><br>
-        <span class="desc">The <span class="hay">HayoFind</span> is a web application created by BROMS Technologies that<br> provides a convenient way in buying and selling livestock.
-        It provides the users<br> with the options to look and choose their desired kind of livestock. </span><br><br>
-        <p class="reg">Register to shop now!    <button class="reg-BTN" type="submit" name="submit">Register</button></p>
+        <span class="desc">The <span class="hay">HayoFind</span> is a web application created by BROMS Technologies that provides<br> a convenient way in buying and selling livestock.
+        It provides the users with the<br> options to look and choose their desired kind of livestock. </span><br><br>
+        
+        <?php if(isset($merchantReg) && $merchantReg == true): ?>
+            <p class="reg">Register to sell now!    <button class="reg-BTN" type="submit" name="submit">Register</button></p>
+        <?php else: ?>
+            <p class="reg">Register to shop now!    <button class="reg-BTN" type="submit" name="submit">Register</button></p>
+        <?php endif; ?>
+    
+        <img class="home-image" src="123.jpg" alt="login-logo" style="height: 364px; width: 860px;">
     </div>

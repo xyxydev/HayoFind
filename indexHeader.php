@@ -33,7 +33,7 @@
 
             <?php } else { ?>
                         <a class="login-anc" href="buyerLoginForm.php"> <i class="fas fa-sign-in-alt"></i> Login</a>
-                        <a class="register-anc" href="customerRegisterForm.php"> <i class="fas fa-user-plus"></i> Register</a>
+                        <a class="register-anc" href="buyerRegisterForm.php"> <i class="fas fa-user-plus"></i> Register</a>
             <?php } ?>
         </div>
 
@@ -56,7 +56,7 @@
             </form>
         </div>
         <div class="cartNav">
-            <a class="cart-anc" href="cart.php" ><i class="fas fa-shopping-cart"></i> Orders 
+            <a class="cart-anc" href="cart.php" ><i class="fas fa-shopping-cart"></i> Cart 
 
             <?php 
                 if (isset($_SESSION['cart']) && !empty($_SESSION['cart'])) {
@@ -67,9 +67,11 @@
                 }
             ?>
             </a>
+            <a class="order-anc" href="orders.php" >Orders </a>
 
         </div>
-
+        
+            
         <div>
             <ul>
                 <li>Cattles</li>

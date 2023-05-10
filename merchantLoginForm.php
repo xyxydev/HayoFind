@@ -12,6 +12,14 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Merchant Login Form</title>
+
+    <!-- CSS -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.3.1/css/bootstrap.min.css">
+     <!-- Bootstrap CDN -->
+     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+
+    <!-- JavaScript (optional) -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.3.1/js/bootstrap.bundle.min.js"></script>
 </head>
 <body>
     <?php
@@ -50,30 +58,40 @@
             }
         }
     ?>
+    
+    <?php
+        $merchantReg = true;
+        require_once('loginHeader.php'); 
+    
+    ?>
+
+    <div class="container mt-5 pt-5">
     <?php if (isset($error)): ?>
         <p><?php echo $error; ?></p>
     <?php endif; ?>
+    
+    <div class="col-md-6">
+        <form class="p-4 p-md-5 rounded-3" id="cont-card" action="merchantLoginForm.php" method="POST">
+            <h2 class="text-center mb-4">Merchant Log In</h2>
 
-    <div class="loginBox">
-        <form class="loginForm" action="merchantLoginForm.php" method="POST">
-            <div class="login-span">
-                <span>Merchant Log In</span><br>
+            <div class="mb-3">
+            <label for="username" class="form-label">Username</label>
+            <input class="form-control" type="text" id="username" name="username" required>
             </div>
-            <hr width="398px" color="black" size="1">
-            <input class="username-input" type="text" id="username" name="username" placeholder="Username/Email" required><br>
-            <input class="password-input" type="password" id="password" name="password" placeholder="Password" required><br>
-            <input class="submit-input" type="submit" value="LOGIN"><br><br>
 
-            <!--<div class="or-span">
-                <span>OR</span>
-            </div><br>
+            <div class="mb-3">
+            <label for="password" class="form-label">Password</label>
+            <input class="form-control" type="password" id="password" name="password" required>
+            </div>
 
-            <div class="googleContainer">
-                <img src="googlelogo.png" alt="registerLogo">
-                <p class="google-p">Google</p>
-            </div> Libog pag design, need google api pod------>
-            <span class="noAcc-span">No account? <a href="registerOption.html" class="signup-Anc">Register</a></span>
+            <button class="login-BTN" type="submit" name="submit">LOGIN</button>
+
+            <div class="text-center mt-3">
+            No account? <a href="merchantRegisterForm.php" class="signup-Anc">Register</a>
+            </div>
         </form>
+
+        </div>
     </div>
 </body>
 </html>

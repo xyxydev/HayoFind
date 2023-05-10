@@ -12,70 +12,23 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Add New Product</title>
+    
+    <!-- CSS -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.3.1/css/bootstrap.min.css">
+     <!-- Bootstrap CDN -->
+     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+
+    <!-- JavaScript (optional) -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.3.1/js/bootstrap.bundle.min.js"></script>
 </head>
 <body>
-    <div class="navbarBox">
-        <div class="logoName">
-            <img class="logo-img" src="images/logo.png" alt="registerLogo">
-        </div>
-        <div class="hayofind-div">
-            <span class="hayofind">HayoFind</span>
-        </div>
-        
-        <ul>
-            <li><a class="home-anc" href="merchantPage.php">Home</a></li>
-            <li><a class="myproducts-anc" href="merchantProducts.php">My Products</a></li>
-            <li><a class="addnewproduct-anc" href="addnewproductPage.html">Add New Product</a></li>
-            <li><a class="myorders-anc" href="#">My Orders</a></li>
-            <li class="dropdown">
-                <a class="myaccount-anc" href="#">My Account</a>
-                <div class="dropdown-content">
-                  <a class="profile-anc" href="myaccountPage.php">Profile</a>
-                  <a class="settings-anc" href="#">Switch</a>
-                  <a class="logout-anc" href="#">Logout</a>
-                </div>
-            </li>
-          </ul>
-    </div>
-
-    <div class="formBox">
-        <form action="addnewproductPage.php" method="POST" enctype="multipart/form-data">
-            <div class="add-span">
-                <span>ADD NEW PRODUCT</span><br>
-            </div>
-            <!--<hr width="513px" color="black" size="1">-->
-            <img src="#" id="preview" alt="Preview Image" style="display:none; width:180px; height:150px;">
-            <input class="file-input" type="file" name="image" id="file-upload" onchange="previewImage()"><br>
-
-            <input class="itemName-input" type="text" id="name" name="name" placeholder="Item name" required>
-
-            <input class="age-input" type="text" id="age" name="age" placeholder="Age" required><br>
-    
-            <input class="kind-input" type="text" id="kind" name="kind" placeholder="Kind" required>
-    
-            <input class="breed-input" type="text" id="breed" name="breed" placeholder="Breed" required><br>
-    
-            <input class="price-input" type="text" id="price" name="price" placeholder="Price" required>
-            
-            <input class="weight-input" type="text" id="weight" name="weight" placeholder="Weight" required><br>
-
-            <input class="desc-input" type="text" id="desc" name="desc" placeholder="Description" required><br>
-            
-            <input class="stock-input" type="text" id="stock" name="stock" placeholder="Stock" required>
-            
-            <button class="add-btn" type="submit" name="submit">ADD</button>
-            <input class="clear-btn" type="submit" value="CLEAR">
-        </form>
-    </div>
-</body>
-</html>
-<?php
+    <?php
         include_once("connections/connect.php");
 
         $con = connection();
 
         session_start();
-        $user_id = $_SESSION['user_id'];
+        @$user_id = $_SESSION['user_id'];
         if(isset($_POST['submit'])) {
 
 
@@ -121,3 +74,74 @@
             mysqli_close($con);
         }
     ?>
+    <?php
+        $addnewproduct = true;
+        require_once('sellerHeader.php'); 
+    
+    ?>
+
+<div class="container">
+  <div class="col-md-11 offset-md-1">
+    <form class="p-4 p-md-5 rounded-3" action="addnewproductPage.php" method="POST" enctype="multipart/form-data">
+      <h2 class="text-center mb-4">ADD PRODUCT</h2>
+      <img src="#" id="preview" alt="Preview Image" style="display:none; width:180px; height:150px; margin-left: 355px; margin-bottom: 20px;">
+
+      <div class="row g-2 mb-3">
+        <div class="col-md-6">
+          <label for="image" class="form-label">Item image</label>
+          <input class="form-control image-input" type="file" name="image" id="file-upload" onchange="previewImage()">
+        </div>
+        <div class="col-md-6">
+          <label for="name" class="form-label">Item name</label>
+          <input class="form-control" type="text" id="name" name="name" required>
+        </div>
+      </div>
+
+      <div class="row g-3 mb-3">
+        <div class="col">
+          <label for="age" class="form-label">Age</label>  
+          <input class="form-control" type="text" id="age" name="age" required>
+        </div>
+        <div class="col">
+          <label for="kind" class="form-label">Kind</label>
+          <input class="form-control" type="text" id="kind" name="kind" required>
+        </div>
+
+        <div class="col">
+          <label for="breed" class="form-label">Breed</label>
+          <input class="form-control" type="text" id="breed" name="breed" required>
+        </div>
+      </div>
+
+      <div class="row g-3 mb-3">
+        <div class="col">
+          <label for="price" class="form-label">Price</label>
+          <input class="form-control" type="text" id="price" name="price" required>
+        </div>
+        <div class="col">
+          <label for="weight" class="form-label">Weight</label>
+          <input class="form-control" type="text" id="weight" name="weight" prequired>
+        </div>
+        <div class="col">
+          <label for="stock" class="form-label">Stock</label>
+          <input class="form-control" type="text" id="stock" name="stock" required>
+        </div>
+      </div>
+      <div class="mb-3 mb-3">
+        <label for="desc" class="form-label">Description</label>
+        <input class="form-control" type="text" id="desc" name="desc" required>
+      </div>
+
+      <div class="d-grid gap-2">
+        <button class="add-BTN" type="submit" name="submit">ADD</button>
+      </div>
+      <div class="d-grid gap-2 mt-3">
+        <input class="clear-BTN" type="submit" value="CLEAR">
+      </div>
+      
+    </form>
+  </div>
+</div>
+
+</body>
+</html>

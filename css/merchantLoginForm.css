@@ -1,117 +1,69 @@
 body {
-	font-family: 'Quicksand';
-	background-color: #ffffff;
+	background: #ffffff;
+    font-family: 'Quicksand' !important;
+    font-size: 13px;
 	cursor: pointer;
-}
-.loginBox{
-	background-color: #FEFFDE;
-	border-top: 11px solid #91C788;
-	box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
-	position: relative;
-	display: flex;
-	width: 400px;
-	height: 380px;
-	margin: 115px auto;
-	
-}
-.login-span{
-    margin-top: 27px;
-    font-size: 25px;
-	text-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
-	margin-left: 40px;
-    margin-bottom: 15px;
+    margin: 0;
+	padding: 0;
 }
 
-.username-input{
-    width: 300px;
-    height: 30px;
-    margin-top: 23px;
-    margin-left: 40px;
-    padding: 5px;
-    font-size: 16px;
-    font-family: 'Quicksand';
-}
-::placeholder {
-    font-family: 'Quicksand';
-    color: #999;
-    font-size: 14px;
-    font-weight: 300;
-    padding-left: 5px;
-  }
-.password-input{
-    width: 300px;
-    height: 30px;
-    margin-top: 30px;
-    margin-left: 40px;
-    padding: 5px;
-    font-size: 16px;
-    font-family: 'Quicksand';
-}
-.submit-input{
-    width: 315px;
-    height: 45px;
-    margin-top: 35px;
-    margin-left: 40px;
-    background-color: white;
-    border-color: white;
-	border-top: 5px solid #91C788;
-	box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
-	color: black;	
-    padding-top: 10px;
-    padding-bottom: 10px;
-    text-decoration: none;
-    font-weight: bold;
-}
-.submit-input:hover{
-	background: #91C788;
-	border-top: 5px solid #ffffff;
-	color: rgb(255, 255, 255);
-	transition-duration: 0.2s;
-}
-input[type="text"]:focus {
-    border-bottom: 1px solid #91C788;
-    outline: none;
-    border-top: none;
-    border-left: none;
-    border-right: none;
-    font-size: 16px;
-    font-family: 'Quicksand';
-}
-input[type="password"]:focus{
-    border-bottom: 1px solid #91C788;
-    outline: none;
-    border-top: none;
-    border-left: none;
-    border-right: none;
-    font-size: 16px;
-    font-family: 'Quicksand';
-}
-/**.googleContainer{
-    background-color: white;
-    margin-left: 200px;
-    border: 1px solid black;
-    padding: 10px;
-    
-}
-img{
-    height: 30px;
-	width: 30px;
-    float: left;
-}
-.google-p{
-    float: left;
-}
-.or-span{
-	text-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
-	margin-left: 180px;
-}
-**/
-.noAcc-span{
-    margin-left: 130px;
-	font-size: 15px;
-	
+.w-100 btn btn-lg btn-primary{
+    background-color: #91C788 !important;
 }
 .signup-Anc{
-	text-decoration: none;
-	color: #91C788;
+    color: #91C788;
+    text-decoration: none !important;
+    outline: none;
 }
+.login-BTN{
+    /* Sets width to 100% */
+    width: 100%;
+
+    /* Styles for button */
+    display: inline-block;
+    font-weight: 400;
+    text-align: center;
+    white-space: nowrap;
+    vertical-align: middle;
+    user-select: none;
+    
+    padding: 0.5rem 1rem;
+    font-size: 1.25rem;
+    line-height: 1.5;
+    border-radius: 0.3rem;
+
+    /* Background and text color */
+    color: #fff;
+    background-color: #91C788;
+    border: none;
+    outline: none;
+    margin-bottom: 50px !important;
+    
+}
+button.login-BTN:focus {                /** Para change color ig click **/
+    border: 2px solid #9acd32; 
+    outline: none;
+}
+
+input.form-control:focus {
+    outline: none !important;
+    box-shadow: none;
+    border-color: #9acd32;
+}
+h2.text-center mb-4{
+    font-family: 'Quicksand' !important;
+    font-weight: 100 !important;
+}
+
+h2{
+    font-weight:400 !important;
+    padding-bottom: 10px !important;
+    color: #40513B !important;
+}
+.col-md-6{
+    box-shadow: 0px 1px 16px rgba(0, 0, 0, 0.08) !important;
+    padding: 40px !important;
+    margin-left: 800px !important;
+    margin-top: 20px;
+}
+

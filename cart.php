@@ -94,42 +94,51 @@
         </div>
         
         <div class="col-md-4 border rounded mt-5 bg-white h-25" >
-            <div class="pt-4">
+            <div class="pt-4" id="pt-4ID">
                 <h6 class="price-detailsH6">PRICE DETAILS</h6>
                 <div class="backhome-btn">
-    <button type="submit" id="homeinfo-btn" name="home">Back to Home</button>
+                <a class="button-link" href="index.php">Back to Home</a>
 </div>
                 
                 <hr>
                 <div class="row price-details">
-                    <div class="col-md-6">
+                    <div class="col-md-6" id="price-div-col">
                         <?php 
                             if(isset($_SESSION['cart'])){
                                 $count = count($_SESSION['cart']);
-                                echo "<h6>Price($count items)</h6>";
+                                echo "<h6>Price ($count items)</h6>";
                             } else {
                                 echo "<h6>Price(0 items)</h6>";
                             }
                         ?>
-                        <h6>Delivery Charges</h6>
+                        <h6>Delivery Fee</h6>
                         <hr>
                         <h6>Amount Payable</h6>
+                        
                     </div>
-                    <div class="col-md-6">
+    
+                    <div class="col-md-6" id="price-div-col">
                         <h6>
                             <?php 
-                                echo $total; 
+                                echo "&#8369; $total"; 
                             ?> 
                         </h6>
-                        <h6 class="text-success">FREE</h6>
+                        <h6 class="text-success">&#8369; 200</h6>
                         <hr>
                         <h6>
                             <?php 
-                                echo $total;
+                                $fee = "200.00";
+                                $numericFee = floatval($fee);
+                                $feeTotal = $total + $numericFee;
+                                echo "&#8369; $feeTotal";
                             ?>
                         </h6>
                     </div>
+
                 </div>
+                <div class="checkout-BTN-div">
+                            <a class="checkout-BTN" href="orders.php">Checkout</a>
+                    </div>
             </div>
         </div>
     </div>

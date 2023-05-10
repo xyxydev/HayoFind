@@ -74,8 +74,7 @@
                 
                 <form method="POST" enctype="multipart/form-data">
                     <div class="about">
-                        <h5><label class="avatar-label" for="avatar">Profile</label></h5>
-                        <input class=avatar-input" type="file" name="avatar" id="avatar">
+                        <h5><label class="avatar-label" for="avatar" id="profile-h5">Profile</label></h5>
                     </div>
                     
                 
@@ -86,10 +85,11 @@
                     </div>
                     <h5 class="user-name"><?php echo $fname. ' '.$lname; ?></h5>
                     <h6 class="user-email"><?php echo $email; ?></h6>
+                    <input class=avatar-input" type="file" name="avatar" id="avatar">
                 </div>
 
                 <div class="about">
-                    <h5><label class="valid_id-label" for="valid_ID">Valid ID</label></h5>
+                    <h5><label class="valid_id-label" for="valid_ID" id="valid-h5">Valid ID</label></h5>
                     <input class="valid_id-input" type="file" name="valid_ID" id="valid_ID">
                     <p class="uploaded"><span class="uf">Uploaded file:</span><br> <?php echo $valid_ID; ?></p>
                 </div>
@@ -156,7 +156,7 @@
         <div class="card-body">
             <div class="row gutters">
                 <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
-                    <h6 class="mb-2 text-primary">Personal Details</h6>
+                    <h6 class="mb-2 text-primary" id="personal-h6">Personal Details</h6>
                 </div>
                 <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
                     <div class="form-group">
@@ -214,7 +214,7 @@
             </div>
             <div class="row gutters">
                 <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
-                    <h6 class="mt-3 mb-2 text-primary">Account Details</h6>
+                    <h6 class="mt-3 mb-2 text-primary" id="account-h6">Account Details</h6>
                 </div>
                 <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
                     <div class="form-group">

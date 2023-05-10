@@ -3,6 +3,7 @@ body{
     font-family: 'Quicksand' !important;
     font-size: 13px;
 	cursor: pointer;
+    scroll-behavior: smooth !important;
    
 }
 .navbarBox{
@@ -101,6 +102,12 @@ a.cart-anc{
     font-size: 30px;
     text-decoration: none !important; 
 }
+a.order-anc{
+    color: white !important;
+    font-size: 30px;
+    text-decoration: none !important;
+    margin-left: 50px !important;
+}
 ul{
     list-style: none !important;
     display: flex !important;
@@ -160,21 +167,27 @@ img{
 }
 .span-priceIN{
     font-weight: bold;
+    font-size: 16px;
 }
 .span-kindIN{
     font-weight: bold;
+    font-size: 16px;
 }
 .span-weightIN{
     font-weight: bold;
+    font-size: 16px;
 }
 .span-price{
     margin-left: 25px;
+    font-size: 18px;
 }
 .span-kind{
     margin-left: 25px;
+    font-size: 18px;
 }
 .span-weight{
     margin-left: 5px;
+    font-size: 18px;
 }
 .div-price{
     text-align: start;

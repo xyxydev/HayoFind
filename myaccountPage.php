@@ -60,6 +60,7 @@
     ?>
 
     <?php 
+        $myaccount = true;
         require_once('sellerHeader.php'); 
     ?>
     <div class="myaccount-cont">
@@ -73,8 +74,7 @@
                 <form method="POST" enctype="multipart/form-data">
                     <div class="about">
                         
-                        <h5 class="mb-2 text-primary">Profile</h5>
-                        <input class=avatar-input" type="file" name="avatar" id="avatar">
+                        <h5 class="mb-2 text" id="profile-h5">Profile</h5>
                     </div>
                     
                 
@@ -85,11 +85,12 @@
                     </div>
                     <h5 class="user-name"><?php echo $fname. ' '.$lname; ?></h5>
                     <h6 class="user-email"><?php echo $email; ?></h6>
+                    <input class=avatar-input" type="file" name="avatar" id="avatar">
                 </div>
 
                 <div class="about">
                     
-                    <h5 class="mb-2 text-primary">Valid ID</h5>
+                    <h5 class="mb-2 text-primary" id="valid-h5">Valid ID</h5>
                     <input class="valid_id-input" type="file" name="documents" id="documents">
                     <p class="uploaded"><span class="uf">Uploaded file:</span><br> <?php echo $documents; ?></p>
                 </div>
@@ -157,7 +158,7 @@
         <div class="card-body">
             <div class="row gutters">
                 <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
-                    <h6 class="mb-2 text-primary">Personal Details</h6>
+                    <h6 class="mb-2 text-primary" id="personal-h6">Personal Details</h6>
                 </div>
                 <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
                     <div class="form-group">
@@ -215,7 +216,7 @@
             </div>
             <div class="row gutters">
                 <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
-                    <h6 class="mt-3 mb-2 text-primary">Account Details</h6>
+                    <h6 class="mt-3 mb-2 text-primary" id="account-h6">Account Details</h6>
                 </div>
                 <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
                     <div class="form-group">
@@ -277,7 +278,7 @@
             url: 'logout.php',
             success: function(data) {
                 // Redirect user to login page or home page after logout
-                window.location.href = 'loginOption.html';
+                window.location.href = 'index.php';
             }
             });
         });
