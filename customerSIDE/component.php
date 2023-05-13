@@ -3,9 +3,6 @@
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
 </head>
 
-<!---
- <button type=\"submit\" class=\"cart-btn\" name=\"add\">Add to Cart <i class=\"fas fa-shopping-cart\"></i></button>
-                            <input type=\"hidden\" name=\"product_ID\" value=\"$productID\"> -->
 <?php
 function component($productname, $productprice, $productImage, $productKind, $productWeight, $productID){
     $element = "
@@ -64,6 +61,7 @@ function cartElement($productImage, $productname, $productprice, $productID){
                             </div>
 
                             <div class=\"infoCartDiv\">
+                                <h6 class=\"pt-2\">Seller Testing: $productname</h6>
                                 <h5 class=\"pt-2\">$productname</h5>
                                
                                 <h5 class=\"pt-2\">&#8369; $productprice</h5>
@@ -71,16 +69,53 @@ function cartElement($productImage, $productname, $productprice, $productID){
                                 <button type=\"submit\" class=\"btn btn-danger mx-2\"  id=\"remove-btn\" name=\"remove\">Remove</button>
                                 
                             </div>
+                            </form>
 
-                            <div class=\"addminus-btn\">
-                                <button class=\"quantity-button\" id=\"decrease-button\">-</button>
-                                <input type=\"text\" id=\"quantity-input\" value=\"1\">
-                                <button class=\"quantity-button\" id=\"increase-button\">+</button>
-                            </div>
+                            <form method=\"POST\" action=\"\">
+                                <div class=\"quantity-btn\">
+                                    <label for=\"quantity-input\" class=\"quantity-label\">Quantity</label>
+                                    <div class=\"input-group\">
+                                        <input type=\"number\" id=\"quantity-input\" name=\"quantity-input\" class=\"form-control\" min=\"0\" max=\"10\">
+                                    </div>
+                                
+                                <button type=\"submit\" name=\"Apply\" class=\"apply-btn\">Apply</button>
+                                <button type=\"submit\" name=\"Change\" class=\"change-btn\">Change</button>
+                                </div>
+                                
+                            </form>
+
+
                             <hr>
                         </div>
-                </form>
+                
     
     ";
     echo  $element;
 }
+
+$con = connection();
+if ($_SERVER["REQUEST_METHOD"] == "POST") {
+    if (isset($_POST["Apply"])) {
+        // Insert the quantity into the database
+        $quantity = $_POST["quantity-input"];
+
+        $sql = "INSERT INTO cart (quantity) VALUES ($quantity)";
+        if ($con->query($sql) === TRUE) {
+            echo "Quantity inserted successfully";
+        } else {
+            echo "Error: " . $sql . "<br>" . $con->error;
+        }
+    } elseif (isset($_POST["Change"])) {
+        // Update the quantity in the database
+        $quantity = $_POST["quantity-input"];
+
+        $sql = "UPDATE cart SET quantity = $quantity WHERE cart_ID = $cart_ID";  // Replace "id = 1" with the appropriate condition for your table
+        if ($con->query($sql) === TRUE) {
+            echo "Quantity updated successfully";
+        } else {
+            echo "Error: " . $sql . "<br>" . $con->error;
+        }
+    }
+}
+?>
+

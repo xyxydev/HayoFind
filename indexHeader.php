@@ -56,17 +56,12 @@
             </form>
         </div>
         <div class="cartNav">
-            <a class="cart-anc" href="cart.php" ><i class="fas fa-shopping-cart"></i> Cart 
+            <?php if(isset($cartcart) && $cartcart == true): ?>
+                <a class="cart-anc" style="color: #9acd32;" href="cart.php"><i class="fas fa-shopping-cart" style="color: #9acd32 ;"></i> Cart </a>
+            <?php else: ?>
+                <a class="cart-anc" href="cart.php" ><i class="fas fa-shopping-cart"></i> Cart </a>
+            <?php endif; ?>
 
-            <?php 
-                if (isset($_SESSION['cart']) && !empty($_SESSION['cart'])) {
-                    $count = count($_SESSION['cart']);
-                    echo "<span class=\"order-count\">$count</span>";
-                } else {
-                    echo "<span class=\"order-count\">0</span>";
-                }
-            ?>
-            </a>
             <a class="order-anc" href="orders.php" >Orders </a>
 
         </div>

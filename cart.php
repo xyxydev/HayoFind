@@ -27,28 +27,30 @@
 <body>
     <?php
 
-    session_start();
-   
-    include_once("connections/connect.php"); 
-    require_once("customerSIDE/component.php");
-    $con = connection();
+        session_start();
+    
+        include_once("connections/connect.php"); 
+        require_once("customerSIDE/component.php");
+        $con = connection();
 
-    if(isset($_POST['remove'])){
-        if($_GET['action'] == 'remove'){
-            foreach($_SESSION['cart'] as $key => $value){
-                if($value["product_ID"] == $_GET['id']){
-                    unset($_SESSION['cart'][$key]);
+        if (isset($_POST['remove'])) {
+            if ($_GET['action'] == 'remove') {
+                $productID = $_GET['id'];
+                $userID = $_SESSION['user_id'];
 
-                    echo "<script>alert('Product removed!')</script>";
-                    echo "<script>window.location = 'cart.php'</script>";
-                }
+                // Delete the product from the cart table
+                $sql = "DELETE FROM cart WHERE buyer_ID = '$userID' AND product_ID = '$productID'";
+                mysqli_query($con, $sql);
+
+                echo "<script>alert('Product removed!')</script>";
+                echo "<script>window.location = 'cart.php'</script>";
             }
         }
-    }
     ?>
 
    
     <?php
+        $cartcart = true;
         require_once('indexHeader.php'); 
     
     ?>
@@ -63,28 +65,23 @@
                 
                 <?php 
                     $total = 0;
-                    if(isset($_SESSION['cart']) && !empty($_SESSION['cart'])){
-                        $product_ID = array_column($_SESSION['cart'], 'product_ID');
+                    $userID = $_SESSION['user_id'];
 
-                        //get data from database
-                        $sql = "SELECT * FROM products";
+                    // Fetch products from the cart table for the current user
+                    $sql = "SELECT products.item_IMG, products.item_Name, products.item_Price, cart.product_ID
+                            FROM products
+                            INNER JOIN cart ON products.item_ID = cart.product_ID
+                            WHERE cart.buyer_ID = '$userID'";
 
-                        //execute the SQL query and fetch the data
-                        $result = mysqli_query($con, $sql);
+                    // Execute the SQL query and fetch the data
+                    $result = mysqli_query($con, $sql);
 
-                        //check if there are any results
-                        if (mysqli_num_rows($result) > 0) {
-                            //output data of each row
-                            while($row = mysqli_fetch_assoc($result)) {
-                                foreach($product_ID as $id){
-                                    if($row['item_ID'] == $id){
-                                        cartElement($row['item_IMG'], $row['item_Name'], $row['item_Price'], $row['item_ID']);
-                                        $total = $total + (int)$row['item_Price'];
-                                    }
-                                }
-                            }
-                        } else {
-                            echo "0 results";
+                    // Check if there are any results
+                    if (mysqli_num_rows($result) > 0) {
+                        // Output data of each row
+                        while($row = mysqli_fetch_assoc($result)) {
+                            cartElement($row['item_IMG'], $row['item_Name'], $row['item_Price'], $row['product_ID']);//component.php
+                            $total = $total + (int)$row['item_Price'];
                         }
                     } else {
                         echo "<h5> Cart is empty!</h5>";
@@ -93,25 +90,28 @@
             </div>
         </div>
         
-        <div class="col-md-4 border rounded mt-5 bg-white h-25" >
+        <div class="col-md-4 border rounded mt-5 bg-white h-25">
             <div class="pt-4" id="pt-4ID">
                 <h6 class="price-detailsH6">PRICE DETAILS</h6>
                 <div class="backhome-btn">
-                <a class="button-link" href="index.php">Back to Home</a>
-</div>
+                    <a class="button-link" href="index.php">Back to Home</a>
+                </div>
                 
                 <hr>
                 <div class="row price-details">
                     <div class="col-md-6" id="price-div-col">
                         <?php 
-                            if(isset($_SESSION['cart'])){
-                                $count = count($_SESSION['cart']);
+                            if (isset($_SESSION['user_id'])) {
+                                $userID = $_SESSION['user_id'];
+                                $sql = "SELECT COUNT(*) AS count FROM cart WHERE buyer_ID = '$userID'";
+                                $result = mysqli_query($con, $sql);
+                                $count = mysqli_fetch_assoc($result)['count'];
                                 echo "<h6>Price ($count items)</h6>";
                             } else {
                                 echo "<h6>Price(0 items)</h6>";
                             }
                         ?>
-                        <h6>Delivery Fee</h6>
+                        <h6>Standard delivery fee</h6>
                         <hr>
                         <h6>Amount Payable</h6>
                         
@@ -120,35 +120,27 @@
                     <div class="col-md-6" id="price-div-col">
                         <h6>
                             <?php 
-                                echo "&#8369; $total"; 
-                            ?> 
-                        </h6>
-                        <h6 class="text-success">&#8369; 200</h6>
-                        <hr>
-                        <h6>
-                            <?php 
-                                $fee = "200.00";
-                                $numericFee = floatval($fee);
-                                $feeTotal = $total + $numericFee;
-                                echo "&#8369; $feeTotal";
+                                echo "&#8369; $total";
                             ?>
                         </h6>
+                            <h6 class="text-success">₱ 200</h6>
+                            <hr>
+                            <h6>
+                                <?php 
+                                    $fee = "200.00";
+                                    $numericFee = floatval($fee);
+                                    $feeTotal = $total + $numericFee;
+                                    echo "&#8369; $feeTotal";
+                                ?>
+                            </h6>
                     </div>
-
                 </div>
                 <div class="checkout-BTN-div">
-                            <a class="checkout-BTN" href="orders.php">Checkout</a>
-                    </div>
+                    <a class="checkout-BTN" href="placeOrderPage.php">Checkout</a>
+                </div>
             </div>
         </div>
     </div>
-</div>
-
-    
-    
-
-
-
 
 
 <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>

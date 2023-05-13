@@ -22,95 +22,79 @@
 
 </head>
 
-
 <body>
     <?php
         session_start();
         @$user_id = $_SESSION['user_id'];
-    include_once("connections/connect.php");
-    require_once('customerSIDE/component.php'); 
-    $con = connection();
-    
+        include_once("connections/connect.php");
+        require_once('customerSIDE/component.php'); 
+        $con = connection();
+        
+        // Add to cart logic
+        if (isset($_POST['add'])) {
+            $productID = $_POST['product_ID'];
+
+            // Check if the product is already in the cart
+            $sql = "SELECT * FROM cart WHERE buyer_id = '$user_id' AND product_ID = '$productID'";
+            $result = mysqli_query($con, $sql);
+
+            if (mysqli_num_rows($result) > 0) {
+                echo "<script>alert('Product is already added in the cart..!')</script>";
+                echo "<script>window.location = 'index.php'</script>";
+            } else {
+                // Insert the product into the cart table
+
+                $query = "SELECT merchantsID_fk, item_IMG, item_Name, item_Price FROM products WHERE item_ID = $productID";
+                $result = $con->query($query);
+                if ($result && $result->num_rows > 0) {
+                    $row = $result->fetch_assoc();
+
+                    $merchantID = $row['merchantsID_fk'];
+                    $item_IMG = $row['item_IMG'];
+                    $item_Name = $row['item_Name'];
+                    $item_Price = $row['item_Price'];
+                }
+
+                $que = "SELECT fname, lname FROM merchants WHERE id = $merchantID";
+                $res = $con->query($que);
+                if ($res && $res->num_rows > 0) {
+                    $row = $res->fetch_assoc();
+
+                    $seller_Name = $row['fname']. $row['lname'];
+                }
+
+                $dateAdd = date('Y-m-d H:i:s'); // Get the current date and time
+                $sql = "INSERT INTO cart (seller_ID, seller_Name, buyer_ID, product_ID, item_IMG, item_Name, item_Price, dateAdd) VALUES ('$merchantID', '$seller_Name', '$user_id', '$productID', '$item_IMG', '$item_Name', '$item_Price', '$dateAdd')";
+                mysqli_query($con, $sql);
+            }
+        }
     ?>
 
     <?php
         require_once('indexHeader.php'); 
-    
     ?>
-
     
-        <div class="container" id="containerList">
-            <div class="row text-center py-5">
-                <?php
-                /***
-                    component(productname:"Cow", productprice:1000, productImage:"cow.jpg");
-                    component(productname:"Chicken", productprice:500, productImage:"cow.jpg");
-                    component(productname:"Cow", productprice:5000, productImage:"cow.jpg");
-                    component(productname:"Cow", productprice:1000, productImage:"cow.jpg");
-                    component(productname:"Chicken", productprice:500, productImage:"cow.jpg");
-                    component(productname:"Cow", productprice:1000, productImage:"cow.jpg");
-                    component(productname:"Cow", productprice:1000, productImage:"cow.jpg");
-                    component(productname:"Cow", productprice:1000, productImage:"cow.jpg"); **/
+    <div class="container" id="containerList">
+        <div class="row text-center py-5">
+            <?php
+                // Retrieve products from the database
+                $sql = "SELECT * FROM products";
+                $result = mysqli_query($con, $sql);
 
-
-                    //get data from database
-                    $sql = "SELECT * FROM products";
-
-                    //execute the SQL query and fetch the data
-                    $result = mysqli_query($con, $sql);
-
-                    //check if there are any results
-                    if (mysqli_num_rows($result) > 0) {
-                        //output data of each row
-                        while($row = mysqli_fetch_assoc($result)) {
-                           // echo "Product ID: " . $row["id"]. " - Name: " . $row["name"]. " - Price: " . $row["price"]. "<br>";
-                           component($row['item_Name'], $row['item_Price'], $row['item_IMG'], $row['item_Kind'], $row['item_Weight'], $row['item_ID']);
-                        }
-                    } else {
-                        echo "0 results";
+                if (mysqli_num_rows($result) > 0) {
+                    while($row = mysqli_fetch_assoc($result)) {
+                        component($row['item_Name'], $row['item_Price'], $row['item_IMG'], $row['item_Kind'], $row['item_Weight'], $row['item_ID']);
                     }
-                    
-
-                    if (isset($_POST['add'])){
-                        /// print_r($_POST['product_id']);
-                        if(isset($_SESSION['cart'])){
-                    
-                            $item_array_id = array_column($_SESSION['cart'], "product_ID");
-                    
-                            if(in_array($_POST['product_ID'], $item_array_id)){
-                                echo "<script>alert('Product is already added in the cart..!')</script>";
-                                echo "<script>window.location = 'index.php'</script>";
-                            }else{
-                    
-                                $count = count($_SESSION['cart']);
-                                $item_array = array(
-                                    'product_ID' => $_POST['product_ID']
-                                );
-                    
-                                $_SESSION['cart'][$count] = $item_array;
-                                //print_r($_SESSION['cart']);
-                            }
-                    
-                        }else{
-                    
-                            $item_array = array(
-                                    'product_ID' => $_POST['product_ID']
-                            );
-                    
-                            // Create new session variable
-                            $_SESSION['cart'][0] = $item_array;
-                            print_r($_SESSION['cart']);
-                        }
-                    }
-                ?>
-            </div>
+                } else {
+                    echo "0 results";
+                }
+            ?>
         </div>
-</div>
+    </div>
 
-
-
-<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
-<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
 </body>
 </html>
+

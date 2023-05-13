@@ -203,4 +203,50 @@ img{
     padding: 0 0.9rem 0.1rem 0.9rem;
     background-color: #9acd32;
 }
+.quantity-btn{
+    margin-left: 800px !important;
+    margin-top: -120px !important;
+}
+.apply-btn{
+    margin-top: 10px !important;
+    display: inline-block;
+    font-weight: 400;
+    text-align: center;
+    white-space: nowrap;
+    vertical-align: middle;
+    user-select: none;
+    
+    padding: 0.5rem 1rem;
+    font-size: 12px;
+    line-height: 1.5;
+    border-radius: 0.3rem;
+
+    /* Background and text color */
+    color: #fff;
+    background-color: #91C788;
+    border: none;
+    outline: none;
+    margin-bottom: 20px !important;
+}
+.change-btn{
+    margin-top: 10px !important;
+    display: inline-block;
+    font-weight: 400;
+    text-align: center;
+    white-space: nowrap;
+    vertical-align: middle;
+    user-select: none;
+    
+    padding: 0.5rem 1rem;
+    font-size: 12px;
+    line-height: 1.5;
+    border-radius: 0.3rem;
+
+    /* Background and text color */
+    color: #fff;
+    background-color: #6c757d;
+    border: none;
+    outline: none;
+    margin-bottom: 20px !important;
+}
 
