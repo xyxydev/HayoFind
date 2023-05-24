@@ -1,0 +1,135 @@
+
+.footer {
+    position: fixed;
+    bottom: 0;
+}
+.table-wrapper {
+    background: #fff;
+    padding: 20px 25px;
+    margin-top: 30px;
+    align-content: center !important;
+    border-radius: 3px;
+    box-shadow: 0 1px 1px rgba(0,0,0,.05);
+    width: 1400px !important;
+    margin-left: -150px !important;
+    box-shadow: 0px 3.18px 35.16px rgba(0, 0, 0, 0.08);
+}
+.table-wrapper .btn {
+    float: right;
+    color: #333;
+    background-color: #fff;
+    border-radius: 3px;
+    border: none;
+    outline: none !important;
+    margin-left: 10px;
+}
+.table-wrapper .btn:hover {
+    color: #333;
+    background: #f2f2f2;
+}
+
+.table-title h2{
+    font-size: 30px;
+    font-weight:500;
+    text-align: center;
+}
+.table-title{
+    margin-top: 30px !important;
+    box-shadow: 0px 3.18px 35.16px rgba(0, 0, 0, 0.08);
+    padding-top: 40px;
+    padding-bottom: 40px;
+    margin-bottom: -20px;
+    background-color: white;
+    width: 1400px !important;
+    margin-left: -150px !important;
+}
+i.order-icon{
+    color: #9acd32 !important;
+}
+th{
+    font-size: 18px;
+}
+td{
+    font-size: 15px;
+}
+a.continue{
+    display: inline-block;
+    font-weight: 400;
+    white-space: nowrap;
+    vertical-align: middle;
+    user-select: none;
+    padding: 0.5rem 1rem;
+    font-size: 1.25rem;
+    line-height: 1.5;
+    border-radius: 0.3rem;
+    color: #fff;
+    background-color: #91C788;
+    border: none;
+    text-decoration: none !important;
+    outline: none !important;
+    margin-left: 1000px;
+}
+.col-sm-4 h2{
+    font-size: 30px !important;
+}
+
+table.table tr th, table.table tr td {
+    border-color: #e9e9e9;
+    padding: 25px 28px;
+    vertical-align: middle;
+}
+table.table tr th:first-child {
+    width: 60px;
+}
+table.table tr th:last-child {
+    width: 80px;
+}
+table.table-striped tbody tr:nth-of-type(odd) {
+    background-color: #fcfcfc;
+}
+table.table-striped.table-hover tbody tr:hover {
+    background: #f5f5f5;
+}
+table.table th i {
+    font-size: 13px;
+    margin: 0 5px;
+    cursor: pointer;
+}	
+table.table td a {
+    font-weight: bold;
+    color: #566787;
+    display: inline-block;
+    text-decoration: none;
+}
+table.table td a:hover {
+    color: #2196F3;
+}
+table.table td a.view {        
+    width: 30px;
+    height: 30px;
+    color: #5cb85c;
+    border: 2px solid;
+    border-radius: 30px;
+    text-align: center;
+}
+table.table td a.view i {
+    font-size: 22px;
+    margin: 2px 0 0 1px;
+}  
+
+
+table.table .avatar {
+    border-radius: 50%;
+    vertical-align: middle;
+    margin-right: 10px;
+}
+table {
+    counter-reset: section;
+}
+
+.count:before {
+    counter-increment: section;
+    content: counter(section);
+}
+
+

@@ -1,0 +1,84 @@
+body {
+	background: #ffffff;
+    font-family: 'Quicksand' !important;
+    font-size: 13px;
+	cursor: pointer;
+    margin: 0;
+	padding: 0;
+}
+
+.w-100 btn btn-lg btn-primary{
+    background-color: #91C788 !important;
+}
+.signup-Anc{
+    color: #91C788;
+    text-decoration: none !important;
+    outline: none;
+}
+.login-BTN{
+    /* Sets width to 100% */
+    width: 100%;
+
+    /* Styles for button */
+    display: inline-block;
+    font-weight: 400;
+    text-align: center;
+    white-space: nowrap;
+    vertical-align: middle;
+    user-select: none;
+    
+    padding: 0.5rem 1rem;
+    font-size: 1.25rem;
+    line-height: 1.5;
+    border-radius: 0.3rem;
+
+    /* Background and text color */
+    color: #fff;
+    background-color: #91C788;
+    border: none;
+    outline: none;
+    margin-bottom: 50px !important;
+    
+}
+button.login-BTN:focus {                /** Para change color ig click **/
+    border: 2px solid #9acd32; 
+    outline: none;
+}
+
+input.form-control:focus {
+    outline: none !important;
+    box-shadow: none;
+    border-color: #9acd32;
+}
+h2.text-center mb-4{
+    font-family: 'Quicksand' !important;
+    font-weight: 100 !important;
+}
+
+h2{
+    font-weight:400 !important;
+    padding-bottom: 10px !important;
+    color: #40513B !important;
+}
+.col-md-6{
+    box-shadow: 0px 1px 16px rgba(0, 0, 0, 0.08) !important;
+    padding: 40px !important;
+    margin-left: 800px !important;
+    margin-top: 20px;
+}
+span.error{
+  padding: 15px;
+  background-color: #f8d7da;
+  color: #721c24;
+}
+.close-btn{
+    border: none;
+    color: red;
+    margin-left: 2px;
+    margin-right: -3px;
+    background-color: #f8d7da;
+    outline: none !important;
+}
+
+
+

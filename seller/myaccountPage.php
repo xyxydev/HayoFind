@@ -1,38 +1,31 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no, maximum-scale=1.0, minimum-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="">
-    <title>HayoFind</title>
-
+    <link rel="stylesheet" href="seller css/myaccountPage.css">
+    <link rel="shortcut icon" class="iconTab" href="seller images/cow.ico">
     <!----FONTS -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@300;400;500;600&display=swap" rel="stylesheet">
+    
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <!-- Bootstrap CDN -->
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-
-    <link rel="shortcut icon" class="iconTab" href="cow.ico">
-    <link rel="stylesheet" href="buyer css/customerProfile.css">
-    <!-- ICON -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" />
-
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <script src="test.js"></script>
 
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 
-
+    <title>Profile</title>
 </head>
 <body>
 
-
     <?php
     session_start();
-
     include_once("connections/connect.php");
     $con = connection();
 
@@ -42,14 +35,14 @@
         // Handle the case where the user ID is not set
         $error = "No user";
     }
+    
+    if (isset($user_id)) {
+        $sql = "SELECT * FROM merchants WHERE id = $user_id"; // Change "1" to the ID of the user you want to retrieve data for
 
-        require_once('indexHeader.php'); 
-        //$sql = "SELECT * FROM buyers WHERE id = $user_id"; // Change "1" to the ID of the user you want to retrieve data for
-
-        $sql = "SELECT b.*, bv.verification_status 
-        FROM buyers AS b
-        INNER JOIN buyer_verification AS bv ON b.id = bv.buyer_ID
-        WHERE b.id = $user_id";
+        $sql = "SELECT m.*, mv.verification_status 
+        FROM merchants AS m
+        INNER JOIN merchant_verification AS mv ON m.id = mv.seller_ID
+        WHERE m.id = $user_id";
 
         $result = $con->query($sql);
         
@@ -65,12 +58,17 @@
             $password = $row["password"];
             $dob = $row["dob"];
             $address = $row["address"];
-            $valid_ID = $row["valid_ID"];
-            $image = $row["image"];
+            $documents = $row["documents"];
+            $image = $row["img"];
 
             $verification_status = $row["verification_status"];
-
         }
+    }    
+    ?>
+
+    <?php 
+        $myaccount = true;
+        require_once('sellerHeader.php'); 
     ?>
     <div class="myaccount-cont">
     <div class="container">
@@ -82,7 +80,8 @@
                 
                 <form method="POST" enctype="multipart/form-data">
                     <div class="about">
-                        <h5><label class="avatar-label" for="avatar" id="profile-h5">Profile</label></h5>
+                        
+                        <h5 class="mb-2 text" id="profile-h5">Profile</h5>
                     </div>
                     
                 
@@ -92,21 +91,27 @@
                         <img src="<?php echo $image ?>" alt="profile">
                     </div>
                     <h5 class="user-name"><?php echo $fname. ' '.$lname; ?></h5>
-                    
-                    <h6 class="verify"><?php echo $verification_status; ?></h6>
+
+                    <h6 class="verify" style="margin-top: 15px; margin-bottom: 40px;"><?php echo $verification_status; ?></h6>
 
                     <h6 class="user-email"><?php echo $email; ?></h6>
-                    <input class=" avatar-input" type="file" name="avatar" id="avatar">
+                    <input class=avatar-input" type="file" name="avatar" id="avatar">
                 </div>
 
                 <div class="about">
-                    <h5><label class="valid_id-label" for="valid_ID" id="valid-h5">Valid ID</label></h5>
-                    <input class="valid_id-input" type="file" name="valid_ID" id="valid_ID">
-                    <p class="uploaded"><span class="uf">Uploaded file:</span><br> <?php echo $valid_ID; ?></p>
+                    
+                    <h5 class="mb-2 text-primary" id="valid-h5">Valid ID</h5>
+                    <input class="valid_id-input" type="file" name="documents" id="documents" style="margin-top: 15px !important;">
+                    <p class="uploaded" style="margin-top: 15px !important;"><span class="uf">Uploaded file:</span><br> <?php echo $documents; ?></p>
                 </div>
                 <button class="btn btn-primary" type="submit" id="submit-img">Submit</button>
                 </form>
-
+                <!--
+                <div class="about">
+                    <h5>Bio</h5>
+                    <p>I'm Yuki. Full Stack Designer I enjoy creating user-centric, delightful and human experiences.</p>
+                </div>
+                -->
                 <?php
                     // Check if form is submitted
                     if ($_SERVER['REQUEST_METHOD'] == 'POST') {
@@ -123,7 +128,7 @@
 
                             $file_path = mysqli_real_escape_string($con, $target_file);
 
-                            $sql = "UPDATE buyers SET image='$file_path'  WHERE id='$user_id'";
+                            $sql = "UPDATE merchants SET img='$file_path'  WHERE id='$user_id'";
                             mysqli_query($con, $sql);
                             mysqli_close($con);
                         } else {
@@ -133,8 +138,8 @@
 
                         // Handle valid ID upload
                         $target_dir1 = "uploads/"; // Directory to save uploaded files
-                        $target_file1 = $target_dir1 . basename($_FILES["valid_ID"]["name"]); // Get the file name
-                        if (move_uploaded_file($_FILES["valid_ID"]["tmp_name"], $target_file1)) {
+                        $target_file1 = $target_dir1 . basename($_FILES["documents"]["name"]); // Get the file name
+                        if (move_uploaded_file($_FILES["documents"]["tmp_name"], $target_file1)) {
                             // File uploaded successfully, insert file path into database
 
                             include_once("connections/connect.php");
@@ -142,7 +147,7 @@
 
                             $file_path1 = mysqli_real_escape_string($con, $target_file1);
 
-                            $sql = "UPDATE buyers SET valid_ID='$file_path1'  WHERE id='$user_id'";
+                            $sql = "UPDATE merchants SET documents='$file_path1'  WHERE id='$user_id'";
                             mysqli_query($con, $sql);
                             mysqli_close($con);
                         } else {
@@ -151,6 +156,8 @@
                         }
                     }
                 ?>
+
+                
 
             </div>
         </div>
@@ -236,15 +243,15 @@
                 </div>
                 -->
                 <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
-                <div class="form-group">
-                        <label for="cust_ID">Customer ID</label>
+                    <div class="form-group">
+                        <label for="cust_ID">Merchant ID</label>
                         <input type="text" class="form-control" id="cust_ID" name="cust_ID" value="<?php echo $id; ?>"  readonly required disabled>
                     </div>
                 </div>
             </div>
             <div class="row gutters">
                 <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
-                    <div class="text-right" style="margin-top:20px ;">
+                    <div class="text-right" style="margin-top: 20px;">
                         <button type="submit" class="btn btn-primary" id="saveButton" name="saveData">Save</button> 
                         <button type="submit" class="btn btn-secondary" id="editButton" name="edit">Edit</button>
                     </div>
@@ -264,6 +271,25 @@
         <p><?php echo $error; ?></p>
     <?php endif; ?>
 
+
+    <!-- jQuery code to handle click event -->
+    <script>
+        $(document).ready(function() {
+        // Listen for click event on logout link
+        $('.logout-anc').click(function(e) {
+            e.preventDefault(); // Prevent default link behavior
+            
+            // Send AJAX request to logout PHP script
+            $.ajax({
+            url: 'logout.php',
+            success: function(data) {
+                // Redirect user to login page or home page after logout
+                window.location.href = '../index.php';
+            }
+            });
+        });
+        });
+    </script>
     <script>
         // Get the input fields
         const inputFields = document.querySelectorAll('input[type="text"], input[type="date"], input[type="file"], input[type="radio"]');
@@ -299,13 +325,10 @@
 
         // Use AJAX to send the FormData object to the PHP script that will update the database
         const xhr = new XMLHttpRequest();
-        xhr.open('POST', 'function/updateBuyerProfile.php');
+        xhr.open('POST', 'updateMyAccountPage.php');
         xhr.send(formData);
         });
     </script>
     
-
 </body>
 </html>
-
-

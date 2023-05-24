@@ -19,34 +19,61 @@
     <!-- JavaScript (optional) -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.3.1/js/bootstrap.bundle.min.js"></script>
 
+<style>
+    .container-nav {
+        width: 100%;
+        height: 115px !important;              /**ADJUSTED***/
+        background-color: #40513B;
+        box-shadow: 0 5px 5px rgba(0, 0, 0, 0.1);
+    }
+    .nav-img{
+        margin-left: 30px;
+    }
+    .login-title{
+        margin-left: 1430px !important;
+        margin-top: -58px !important;
+    }
+    .nav-title{
+        margin-left: 350px !important;
+        margin-top: -58px !important;
+    }
+    .hayofind{
+        color: white !important;
+        font-size: 38px !important;
+        font-family: 'Quicksand' !important;
+    }
+    .login{
+        color: white !important;
+        font-size: 38px !important;
+        font-family: 'Quicksand';
+    }
+    .custom-logo-img{
+        height: 65px !important;
+        width: 85px !important;
+        margin-top: 25px;
+        margin-left: 210px;
+        background: #FFFFFF;
+        border: 3px solid #91C788;
+        padding-top: 5px;
+        padding-bottom: 5px;
+        padding-left: 13px;
+        padding-right: 16px;
+    }
+
+</style>
+
 </head>
     <div class="container-nav">
         <div class="nav-img">
-            <img class="custom-logo-img" src="buyer images/logo.png" alt="registerLogo">
+            <img class="custom-logo-img" src="images/logo.png" alt="registerLogo">
         </div>
         
-        <div class="hayofind-div">
-            <a href="index.php" class="hayofind" >HayoFind</a>
+        <div class="nav-title">
+            <span class="hayofind">HayoFind</span>
         </div>
         <div class="login-title">
-            <?php if(isset($register) && $register == true): ?>
-                <span class="login" style="margin-left: -30px;">Register</span>
-            <?php else: ?>
-                <span class="login">Login</span>
-            <?php endif; ?>
+                <span class="login">Admin</span>
+
         </div>
     </div>
-    <div class="home-content">
-        <span class="welcome">Welcome to HayoFind</span><br>
-        <span class="platform">E-Commerce Website</span><br><br>
-        <span class="desc">The <span class="hay">HayoFind</span> is a web application created by BROMS Technologies that provides<br> a convenient way in buying and selling livestock.
-        It provides the users with the<br> options to look and choose their desired kind of livestock. </span><br><br>
-        
-        <?php if(isset($merchantReg) && $merchantReg == true): ?>
-            <p class="reg">Register to sell now!</p>
-        <?php else: ?>
-            <p class="reg">Register to shop now!</p>
-        <?php endif; ?>
     
-        <img class="home-image" src="buyer images/123.jpg" alt="login-logo" style="height: 364px; width: 860px;">
-    </div>

@@ -1,8 +1,8 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <link rel="stylesheet" type="text/css" href="css/buyerloginForm.css">
-    <link rel="shortcut icon" class="iconTab" href="images/cow.ico">
+    <link rel="stylesheet" type="text/css" href="buyer css/buyerloginForm.css">
+    <link rel="shortcut icon" class="iconTab" href="cow.ico">
     <!----FONTS -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -27,7 +27,7 @@
         session_start();
 
         // Check if login form has been submitted
-        if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+        if(isset($_POST['login'])) {
 
             include_once("connections/connect.php");
             $con = connection();
@@ -36,8 +36,10 @@
             $username = $_POST['username'];
             $password = $_POST['password'];
 
+            $hashedPassword = md5($password);
+
             // Query the database to verify user credentials
-            $sql = "SELECT * FROM buyers WHERE username='$username' AND password='$password'";
+            $sql = "SELECT * FROM buyers WHERE (username='$username' OR phoneNumber='$username') AND password='$hashedPassword'";
             $result = $con->query($sql);
 
             // If the query returns a row, the credentials are valid
@@ -55,7 +57,7 @@
                 exit();
             } else {
                 // If the query returns no rows, the credentials are invalid
-                $error = "Invalid username or password";
+                $error = "Invalid username/phone number or password";
             }
         }
     ?>
@@ -65,17 +67,17 @@
     ?>
     
     <div class="container mt-5 pt-5">
-    <?php if (isset($error)): ?>
-        <p><?php echo $error; ?></p>
-    <?php endif; ?>
-    
     <div class="col-md-6">
-
+        <?php if (isset($error)): ?>
+            <div class="error" style="float: left; margin-top: -90px; margin-left: 30px;">
+                <span class="error"><?php echo $error; ?><button class="close-btn" onclick="this.parentNode.style.display='none'">x</button></span>
+            </div>
+        <?php endif; ?>
         <form class="p-4 p-md-5 rounded-3" id="cont-card" action="buyerLoginForm.php" method="POST">
             <h2 class="text-center mb-4">Login</h2>
 
             <div class="mb-3">
-            <label for="username" class="form-label">Username/Email</label>
+            <label for="username" class="form-label">Username/Phone number</label>
             <input type="text" class="form-control" id="username" name="username" required>
             </div>
 
@@ -84,7 +86,7 @@
             <input type="password" class="form-control" id="password" name="password" required>
             </div>
 
-            <button class="login-BTN" type="submit" name="submit">LOGIN</button>
+            <button class="login-BTN" type="submit" name="login">LOGIN</button>
 
             <div class="text-center mt-3">
             No account? <a href="buyerRegisterForm.php" class="signup-Anc">Register</a>

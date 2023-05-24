@@ -1,6 +1,6 @@
 <head>
-    <link rel="stylesheet" type="text/css" href="buyer css/loginHeader.css">
-    <link rel="shortcut icon" class="iconTab" href="star.ico">
+    <link rel="stylesheet" type="text/css" href="seller css/loginHeader.css">
+    <link rel="shortcut icon" class="iconTab" href="seller images/cow.ico">
     <!----FONTS -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -22,11 +22,11 @@
 </head>
     <div class="container-nav">
         <div class="nav-img">
-            <img class="custom-logo-img" src="buyer images/logo.png" alt="registerLogo">
+            <img class="custom-logo-img" src="seller images/logo.png" alt="registerLogo">
         </div>
         
         <div class="hayofind-div">
-            <a href="index.php" class="hayofind" >HayoFind</a>
+            <a href="../index.php" class="hayofind" >HayoFind</a>
         </div>
         <div class="login-title">
             <?php if(isset($register) && $register == true): ?>
@@ -48,5 +48,5 @@
             <p class="reg">Register to shop now!</p>
         <?php endif; ?>
     
-        <img class="home-image" src="buyer images/123.jpg" alt="login-logo" style="height: 364px; width: 860px;">
+        <img class="home-image" src="seller images/123.jpg" alt="login-logo" style="height: 364px; width: 860px;">
     </div>
